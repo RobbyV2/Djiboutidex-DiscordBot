@@ -1,0 +1,12 @@
+5ddjibouti a: 300 h: 995
+djibouti a: 9 h: 70
+djiboutiempire a: 500 h: 2121
+djiboutikingdom a: 200 h: 900
+djiboutirectangle a: 242 h: 695
+djiboutitangle a: 2000 h: 1
+djiboutitriangle a: 40 h: 200
+gigadjibouti a: 700 h: 3000
+realdjibouti a: 72 h: 293
+djiboutiunion a: 250 h: 400
+
+soviet sjibouti a: 600  h: 1000

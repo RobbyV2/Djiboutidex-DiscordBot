@@ -46,7 +46,7 @@ services:
         source: ./
         target: /code
     tty: true
-    command: poetry run uvicorn ballsdex.core.admin:_app --host 0.0.0.0
+    command: poetry run uvicorn ballsdex.core.admin:_app --host 0.0.0.0 --port 8001
 
   postgres-db:
     image: postgres
