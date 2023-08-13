@@ -405,7 +405,7 @@ class Players(commands.GroupCog, group_name=settings.players_group_cog_name):
             return
         if not countryball.countryball.tradeable:
             await interaction.response.send_message(
-                "You cannot donate this countryball.", ephemeral=True
+                "You cannot donate this djiboutiball.", ephemeral=True
             )
             return
         if user.bot:
@@ -413,7 +413,7 @@ class Players(commands.GroupCog, group_name=settings.players_group_cog_name):
             return
         if countryball.id in self.bot.locked_balls:
             await interaction.response.send_message(
-                "This countryball is currently locked for a trade. Please try again later."
+                "This djiboutiball is currently locked for a trade. Please try again later."
             )
             return
         self.bot.locked_balls[countryball.id] = None

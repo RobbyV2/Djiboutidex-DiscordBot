@@ -26,7 +26,7 @@ caught_balls = Counter(
 
 class CountryballNamePrompt(Modal, title=f"Catch this {settings.collectible_name}!"):
     name = TextInput(
-        label="Name of this country", style=discord.TextStyle.short, placeholder="Your guess"
+        label=f"Name of this {settings.collectible_name}", style=discord.TextStyle.short, placeholder="Your guess"
     )
 
     def __init__(self, ball: "CountryBall", button: CatchButton):
@@ -35,11 +35,11 @@ class CountryballNamePrompt(Modal, title=f"Catch this {settings.collectible_name
         self.button = button
 
     async def on_error(self, interaction: discord.Interaction, error: Exception, /) -> None:
-        log.exception("An error occured in countryball catching prompt", exc_info=error)
+        log.exception("An error occured in djiboutiball catching prompt", exc_info=error)
         if interaction.response.is_done():
-            await interaction.followup.send("An error occured with this countryball.")
+            await interaction.followup.send("An error occured with this djiboutiball.")
         else:
-            await interaction.response.send_message("An error occured with this countryball.")
+            await interaction.response.send_message("An error occured with this djiboutiball.")
 
     async def on_submit(self, interaction: discord.Interaction):
         # TODO: use lock

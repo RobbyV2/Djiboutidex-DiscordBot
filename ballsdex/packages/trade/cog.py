@@ -137,14 +137,14 @@ class Trade(commands.GroupCog):
             return
         if not countryball.countryball.tradeable:
             await interaction.response.send_message(
-                "You cannot trade this countryball.", ephemeral=True
+                "You cannot trade this djiboutiball.", ephemeral=True
             )
             return
         await interaction.response.defer(ephemeral=True, thinking=True)
         if countryball.favorite:
             view = ConfirmChoiceView(interaction)
             await interaction.followup.send(
-                "This countryball is a favorite, are you sure you want to trade it?",
+                "This djiboutiball is a favorite, are you sure you want to trade it?",
                 view=view,
                 ephemeral=True,
             )
@@ -171,7 +171,7 @@ class Trade(commands.GroupCog):
             return
         if countryball.id in self.bot.locked_balls:
             await interaction.followup.send(
-                "This countryball is currently in an active trade or donation, "
+                "This djiboutiball is currently in an active trade or donation, "
                 "please try again later.",
                 ephemeral=True,
             )
