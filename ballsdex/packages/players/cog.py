@@ -95,7 +95,7 @@ class SortingChoices(enum.Enum):
 
 class Players(commands.GroupCog, group_name=settings.players_group_cog_name):
     """
-    View and manage your countryballs collection.
+    View and manage your djiboutiballs collection.
     """
 
     def __init__(self, bot: "BallsDexBot"):
@@ -110,7 +110,7 @@ class Players(commands.GroupCog, group_name=settings.players_group_cog_name):
         sort: SortingChoices | None = None,
     ):
         """
-        List your countryballs.
+        List your djiboutiballs.
 
         Parameters
         ----------
@@ -261,7 +261,7 @@ class Players(commands.GroupCog, group_name=settings.players_group_cog_name):
     @app_commands.checks.cooldown(1, 5, key=lambda i: i.user.id)
     async def info(self, interaction: discord.Interaction, countryball: BallInstanceTransform):
         """
-        Display info from a specific countryball.
+        Display info from a specific djiboutiball.
 
         Parameters
         ----------
@@ -279,7 +279,7 @@ class Players(commands.GroupCog, group_name=settings.players_group_cog_name):
     @app_commands.checks.cooldown(1, 60, key=lambda i: i.user.id)
     async def last(self, interaction: discord.Interaction):
         """
-        Display info of your last caught countryball.
+        Display info of your last caught djiboutiball.
         """
         await interaction.response.defer(thinking=True)
         try:
@@ -304,7 +304,7 @@ class Players(commands.GroupCog, group_name=settings.players_group_cog_name):
     @app_commands.command()
     async def favorite(self, interaction: discord.Interaction, countryball: BallInstanceTransform):
         """
-        Set favorite countryballs.
+        Set favorite djiboutiballs.
 
         Parameters
         ----------
@@ -356,7 +356,7 @@ class Players(commands.GroupCog, group_name=settings.players_group_cog_name):
         self, interaction: discord.Interaction, policy: app_commands.Choice[int]
     ):
         """
-        Change how you want to receive donations from /balls give
+        Change how you want to receive donations from /djiboutis give
 
         Parameters
         ----------
@@ -392,14 +392,14 @@ class Players(commands.GroupCog, group_name=settings.players_group_cog_name):
         countryball: BallInstanceTransform,
     ):
         """
-        Give a countryball to a user.
+        Give a djiboutiball to a user.
 
         Parameters
         ----------
         user: discord.User
-            The user you want to give a countryball to
+            The user you want to give a djiboutiball to
         countryball: BallInstance
-            The countryball you're giving away
+            The djiboutiball you're giving away
         """
         if not countryball:
             return

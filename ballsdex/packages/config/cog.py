@@ -29,7 +29,7 @@ activation_embed = discord.Embed(
 @app_commands.guild_only()
 class Config(commands.GroupCog):
     """
-    View and manage your countryballs collection.
+    View and manage your djiboutiballs collection.
     """
 
     def __init__(self, bot: "BallsDexBot"):
@@ -43,7 +43,7 @@ class Config(commands.GroupCog):
         channel: discord.TextChannel,
     ):
         """
-        Set or change the channel where countryballs will spawn.
+        Set or change the channel where djiboutiballs will spawn.
         """
         guild = cast(discord.Guild, interaction.guild)  # guild-only command
         user = cast(discord.Member, interaction.user)
@@ -74,7 +74,7 @@ class Config(commands.GroupCog):
     @app_commands.command()
     async def disable(self, interaction: discord.Interaction):
         """
-        Disable or enable countryballs spawning.
+        Disable or enable djiboutiballs spawning.
         """
         guild = cast(discord.Guild, interaction.guild)  # guild-only command
         user = cast(discord.Member, interaction.user)
