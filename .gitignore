@@ -33,4 +33,5 @@ static
 
 # settings
 config.yml
+/extras/config.json
 docker-compose.override.yml
