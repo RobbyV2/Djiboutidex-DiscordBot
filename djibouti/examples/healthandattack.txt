@@ -7,6 +7,10 @@ djiboutitangle a: 2000 h: 1
 djiboutitriangle a: 40 h: 200
 gigadjibouti a: 700 h: 3000
 realdjibouti a: 72 h: 293
+
 djiboutiunion a: 250 h: 400
 
+
 soviet sjibouti a: 600  h: 1000
+djibouti vatican a: 200  h: 800
+troll djibouti a: 1  h: 1750
