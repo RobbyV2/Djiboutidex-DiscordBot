@@ -11,6 +11,6 @@ realdjibouti a: 72 h: 293
 djiboutiunion a: 250 h: 400
 
 
-soviet sjibouti a: 600  h: 1000
-djibouti vatican a: 200  h: 800
+soviet djibouti a: 600  h: 1000
+djibouti vatican a: 1  h: 1
 troll djibouti a: 1  h: 1750
