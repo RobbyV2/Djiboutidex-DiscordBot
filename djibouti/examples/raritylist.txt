@@ -12,6 +12,7 @@ Rarity list on Djiboutidex
 Djibouti union ofc rarest
 
 --MODIFIED TO BOT
+(All country Djiboutiballs will have a "Djibouti of <countryname>" or "<countryname> Djibouti" as a valid catch option)
 Rarity list on Djiboutidex
 1. Giga Djibouti
 2. Djiboutangle
@@ -26,6 +27,8 @@ Rarity list on Djiboutidex
 11. Real Djibouti
 12. Djibouti Triangle
 13. Troll Djibouti
+14. Hunnic Djibouti
+15. Warsaw Pact Djibouti
 14. Scandinavian Djibouti
 15. American Djibouti
 16. Indian Djibouti
@@ -44,15 +47,17 @@ Rarity list on Djiboutidex
 29. Ukrainian Djibouti
 30. Djibouti of England
 31. Djibouti of Zhou 
-32. Djibouti of Siam
-33. Babylonian Djibouti
-34. Djibouti Kingdom of Greece
-35. Djibouti of Guyana
-36. Argentinian Djibouti
-37. Western Djibouti Sahara
-38. Djibouti of Maldives
-39. Slovakian Djibouti
-40. Somalian Djibouti
-41. Djibouti of Mozambique
-42. Djibouti of Kuwait
-43. Djibouti
+32. Scottish Djibouti
+33. Djibouti of Siam
+34. Babylonian Djibouti
+35. Djibouti Kingdom of Greece
+36. Djibouti of Guyana
+37. Argentinian Djibouti
+38. Western Djibouti Sahara
+39. Djibouti of Maldives
+40. Djibouti of Uruguay
+40. Slovakian Djibouti
+41. Somalian Djibouti
+42. Djibouti of Mozambique
+43. Djibouti of Kuwait
+44. Djibouti
