@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 class Trade(commands.GroupCog):
     """
-    Trade countryballs with other playersa
+    Trade djiboutiballs with other playersa
     """
 
     def __init__(self, bot: "BallsDexBot"):
@@ -131,7 +131,7 @@ class Trade(commands.GroupCog):
         Parameters
         ----------
         countryball: BallInstance
-            The countryball you want to add to your proposal
+            The djiboutiball you want to add to your proposal
         """
         if not countryball:
             return
@@ -190,8 +190,8 @@ class Trade(commands.GroupCog):
 
         Parameters
         ----------
-        countryball: BallInstance
-            The countryball you want to remove from your proposal
+        djiboutiball: BallInstance
+            The djiboutiball you want to remove from your proposal
         """
         if not countryball:
             return

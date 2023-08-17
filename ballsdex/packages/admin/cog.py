@@ -296,9 +296,9 @@ class Admin(commands.GroupCog):
         Parameters
         ----------
         ball: Ball | None
-            The countryball you want to spawn. Random according to rarities if not specified.
+            The djiboutiball you want to spawn. Random according to rarities if not specified.
         channel: discord.TextChannel | None
-            The channel you want to spawn the countryball in. Current channel if not specified.
+            The channel you want to spawn the djiboutiball in. Current channel if not specified.
         """
         # the transformer triggered a response, meaning user tried an incorrect input
         if interaction.response.is_done():
@@ -330,14 +330,14 @@ class Admin(commands.GroupCog):
         attack_bonus: int | None = None,
     ):
         """
-        Give the specified countryball to a player.
+        Give the specified djiboutiball to a player.
 
         Parameters
         ----------
         ball: Ball
-            The countryball you want to give.
+            The djiboutiball you want to give.
         user: discord.User
-            The user you want to give a countryball to.
+            The user you want to give a djiboutiball to.
         special: Special | None
             A special background to set.
         shiny: bool

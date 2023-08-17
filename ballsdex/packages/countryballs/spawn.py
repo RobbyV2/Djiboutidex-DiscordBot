@@ -21,7 +21,7 @@ CachedMessage = namedtuple("CachedMessage", ["content", "author_id"])
 class SpawnCooldown:
     """
     Represents the spawn internal system per guild. Contains the counters that will determine
-    if a countryball should be spawned next or not.
+    if a djiboutiball should be spawned next or not.
 
     Attributes
     ----------

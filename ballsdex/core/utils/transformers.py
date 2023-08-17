@@ -21,7 +21,7 @@ T = TypeVar("T")
 @dataclass
 class CachedBallInstance:
     """
-    Used to compute the searchable terms for a countryball only once.
+    Used to compute the searchable terms for a djiboutiball only once.
     """
 
     model: BallInstance

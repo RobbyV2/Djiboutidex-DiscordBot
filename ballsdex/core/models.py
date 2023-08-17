@@ -56,7 +56,7 @@ class GuildConfig(models.Model):
         description="Discord channel ID where balls will spawn", null=True
     )
     enabled = fields.BooleanField(
-        description="Whether the bot will spawn countryballs in this guild", default=True
+        description="Whether the bot will spawn djiboutiballs in this guild", default=True
     )
 
 
@@ -133,10 +133,10 @@ class Ball(models.Model):
     )
     credits = fields.CharField(max_length=64, description="Author of the collection artwork")
     capacity_name = fields.CharField(
-        max_length=64, description="Name of the countryball's capacity"
+        max_length=64, description="Name of the djiboutiball's capacity"
     )
     capacity_description = fields.CharField(
-        max_length=256, description="Description of the countryball's capacity"
+        max_length=256, description="Description of the djiboutiball's capacity"
     )
     capacity_logic = fields.JSONField(description="Effect of this capacity", default={})
 

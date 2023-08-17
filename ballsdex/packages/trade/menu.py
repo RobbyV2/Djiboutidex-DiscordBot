@@ -229,7 +229,7 @@ class TradeMenu:
         Parameters
         ----------
         compact: bool
-            If `True`, display countryballs in a compact way.
+            If `True`, display djiboutiballs in a compact way.
         """
         self.embed.clear_fields()
 

@@ -265,8 +265,8 @@ class Players(commands.GroupCog, group_name=settings.players_group_cog_name):
 
         Parameters
         ----------
-        countryball: BallInstance
-            The countryball you want to inspect
+        djiboutiball: BallInstance
+            The djiboutiball you want to inspect
         """
         if not countryball:
             return
