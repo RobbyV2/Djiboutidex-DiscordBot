@@ -9,7 +9,7 @@ Rarity list on Djiboutidex
 8. Djibouti triangle
 9. Djibouti
 
-Djibouti union ofc rarest
+Djibouti union ofc rarest (when added)
 
 --MODIFIED TO BOT
 (All country Djiboutiballs will have a "Djibouti of <countryname>" or "<countryname> Djibouti" as a valid catch option)
@@ -40,10 +40,13 @@ Rarity list on Djiboutidex
 24. European Djibouti Union
 25. Canadian Djibouti
 26. Polish Djibouti
+26. Belgian Djibouti
+27. Djibouti HBC
 27. Ukrainian Djibouti SSR
 28. Ethiopian Djibouti Empire
 29. Djibouti Republic of Taiwan
 30. Serbian Djibouti
+30. Czechian Djibouti
 31. Ukrainian Djibouti
 32. Djibouti of England
 33. Djibouti of Zhou 
@@ -59,5 +62,6 @@ Rarity list on Djiboutidex
 43. Slovakian Djibouti
 44. Somalian Djibouti
 45. Djibouti of Mozambique
+46. Armenian Djibouti
 46. Djibouti of Kuwait
 47. Djibouti
