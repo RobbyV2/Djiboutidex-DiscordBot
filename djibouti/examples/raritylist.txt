@@ -38,7 +38,9 @@ Rarity list on Djiboutidex
 22. Djibouti SFSR
 23. Irelandic Djibouti
 24. European Djibouti Union
+24. Napoleonic France Djibouti
 25. Canadian Djibouti
+25. Mexican Djibouti
 26. Polish Djibouti
 26. Belgian Djibouti
 27. Djibouti HBC
@@ -53,6 +55,7 @@ Rarity list on Djiboutidex
 34. Scottish Djibouti
 35. Djibouti of Siam
 36. Babylonian Djibouti
+37. Djibouti Kingdom of Egypt
 37. Djibouti Kingdom of Greece
 38. Djibouti of Guyana
 39. Argentinian Djibouti
