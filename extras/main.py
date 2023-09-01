@@ -24,7 +24,7 @@ application_id = getsetting("application_id")
 token = getsetting("token")
 status = getsetting("status")
 
-intents = discord.Intents.messages()
+intents = discord.Intents.default()
 
 bot = commands.Bot(command_prefix=prefix,
                    intents=intents,
