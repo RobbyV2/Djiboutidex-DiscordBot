@@ -10,6 +10,7 @@
 [![Patreon](https://img.shields.io/badge/Patreon-donate-orange.svg)](https://patreon.com/retke)
 
 DjiboutiDex is a bot for collecting countryballs on Discord and exchange them with your friends!
+
 PS: The admin panel is hosted on port 8001, not 8000. Only changed because I prefer something other than 8000.
 
 You can invite the bot [here](https://discord.com/oauth2/authorize?client_id=1140065532087902350&scope=bot+applications.commands&permissions=537193536).
