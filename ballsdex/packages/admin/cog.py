@@ -7,13 +7,23 @@ from discord.ui import Button
 from discord.ext import commands
 from discord.utils import format_dt
 from tortoise.exceptions import IntegrityError, DoesNotExist
+from collections import defaultdict
 from typing import TYPE_CHECKING, cast
 from ballsdex.core.utils.buttons import ConfirmChoiceView
 
 from ballsdex.settings import settings
-from ballsdex.core.models import GuildConfig, Player, BallInstance, BlacklistedID, BlacklistedGuild
+from ballsdex.core.models import (
+    GuildConfig,
+    Player,
+    Ball,
+    BallInstance,
+    BlacklistedID,
+    BlacklistedGuild,
+    balls,
+)
 from ballsdex.core.utils.transformers import BallTransform, SpecialTransform
-from ballsdex.core.utils.paginator import FieldPageSource, Pages
+from ballsdex.core.utils.paginator import FieldPageSource, TextPageSource, Pages
+from ballsdex.core.utils.logging import log_action
 from ballsdex.packages.countryballs.countryball import CountryBall
 
 if TYPE_CHECKING:
@@ -42,6 +52,85 @@ class Admin(commands.GroupCog):
     balls = app_commands.Group(
         name=settings.players_group_cog_name, description="Balls management"
     )
+    logs = app_commands.Group(name="logs", description="Bot logs management")
+
+    @app_commands.command()
+    @app_commands.checks.has_any_role(*settings.root_role_ids)
+    async def status(
+        self,
+        interaction: discord.Interaction,
+        status: discord.Status | None = None,
+        name: str | None = None,
+        state: str | None = None,
+        activity_type: discord.ActivityType | None = None,
+    ):
+        """
+        Change the status of the bot. Provide at least status or text.
+
+        Parameters
+        ----------
+        status: discord.Status
+            The status you want to set
+        name: str
+            Title of the activity, if not custom
+        state: str
+            Custom status or subtitle of the activity
+        activity_type: discord.ActivityType
+            The type of activity
+        """
+        if not status and not name and not state:
+            await interaction.response.send_message(
+                "You must provide at least `status`, `name` or `state`.", ephemeral=True
+            )
+            return
+
+        activity: discord.Activity | None = None
+        status = status or discord.Status.online
+        activity_type = activity_type or discord.ActivityType.custom
+
+        if activity_type == discord.ActivityType.custom and name and not state:
+            await interaction.response.send_message(
+                "You must provide `state` for custom activities. `name` is unused.", ephemeral=True
+            )
+            return
+        if activity_type != discord.ActivityType.custom and not name:
+            await interaction.response.send_message(
+                "You must provide `name` for pre-defined activities.", ephemeral=True
+            )
+            return
+        if name or state:
+            activity = discord.Activity(name=name or state, state=state, type=activity_type)
+        await self.bot.change_presence(status=status, activity=activity)
+        await interaction.response.send_message("Status updated.", ephemeral=True)
+
+    @app_commands.command()
+    @app_commands.checks.has_any_role(*settings.root_role_ids, *settings.admin_role_ids)
+    async def rarity(self, interaction: discord.Interaction, chunked: bool = True):
+        """
+        Generate a list of djiboutiballs ranked by rarity.
+
+        Parameters
+        ----------
+        chunked: bool
+            Group together djiboutiballs with the same rarity.
+        """
+        text = ""
+        sorted_balls = sorted(balls.values(), key=lambda x: x.rarity, reverse=True)
+
+        if chunked:
+            indexes: dict[float, list[Ball]] = defaultdict(list)
+            for ball in sorted_balls:
+                indexes[ball.rarity].append(ball)
+            for i, chunk in enumerate(indexes.values(), start=1):
+                for ball in chunk:
+                    text += f"{i}. {ball.country}\n"
+        else:
+            for i, ball in enumerate(sorted_balls, start=1):
+                text += f"{i}. {ball.country}\n"
+
+        source = TextPageSource(text, prefix="```md\n", suffix="```")
+        pages = Pages(source=source, interaction=interaction, compact=True)
+        await pages.start(ephemeral=True)
 
     @app_commands.command()
     @app_commands.checks.has_any_role(*settings.root_role_ids, *settings.admin_role_ids)
@@ -282,7 +371,7 @@ class Admin(commands.GroupCog):
         )
         await pages.start(ephemeral=True)
 
-    @app_commands.command()
+    @balls.command()
     @app_commands.checks.has_any_role(*settings.root_role_ids)
     async def spawn(
         self,
@@ -312,9 +401,10 @@ class Admin(commands.GroupCog):
         await interaction.followup.send(
             f"{settings.collectible_name.title()} spawned.", ephemeral=True
         )
-        log.info(
+        await log_action(
             f"{interaction.user} spawned {settings.collectible_name} {countryball.name} "
-            f"in {channel or interaction.channel}."
+            f"in {channel or interaction.channel}.",
+            self.bot,
         )
 
     @balls.command()
@@ -368,10 +458,11 @@ class Admin(commands.GroupCog):
             f"Special: `{special.name if special else None}` • ATK:`{instance.attack_bonus:+d}` • "
             f"HP:`{instance.health_bonus:+d}` • Shiny: `{instance.shiny}`"
         )
-        log.info(
+        await log_action(
             f"{interaction.user} gave {settings.collectible_name} {ball.country} to {user}. "
             f"Special={special.name if special else None} ATK={instance.attack_bonus:+d} "
-            f"HP={instance.health_bonus:+d} shiny={instance.shiny}"
+            f"HP={instance.health_bonus:+d} shiny={instance.shiny}",
+            self.bot,
         )
 
     @blacklist.command(name="add")
@@ -428,8 +519,10 @@ class Admin(commands.GroupCog):
         else:
             self.bot.blacklist.add(user.id)
             await interaction.response.send_message("User is now blacklisted.", ephemeral=True)
-        log.info(
-            f"{interaction.user} blacklisted {user} ({user.id}) for the following reason: {reason}"
+        await log_action(
+            f"{interaction.user} blacklisted {user} ({user.id})"
+            f" for the following reason: {reason}",
+            self.bot,
         )
 
     @blacklist.command(name="remove")
@@ -480,7 +573,9 @@ class Admin(commands.GroupCog):
             await interaction.response.send_message(
                 "User is now removed from blacklist.", ephemeral=True
             )
-        log.info(f"{interaction.user} removed blacklist for user {user} ({user.id})")
+        await log_action(
+            f"{interaction.user} removed blacklist for user {user} ({user.id})", self.bot
+        )
 
     @blacklist.command(name="info")
     async def blacklist_info(
@@ -583,9 +678,10 @@ class Admin(commands.GroupCog):
         else:
             self.bot.blacklist_guild.add(guild.id)
             await interaction.response.send_message("Guild is now blacklisted.", ephemeral=True)
-        log.info(
+        await log_action(
             f"{interaction.user} blacklisted {guild}({guild.id}) "
-            f"for the following reason: {reason}"
+            f"for the following reason: {reason}",
+            self.bot,
         )
 
     @blacklist_guild.command(name="remove")
@@ -629,7 +725,9 @@ class Admin(commands.GroupCog):
             await interaction.response.send_message(
                 "Guild is now removed from blacklist.", ephemeral=True
             )
-            log.info(f"{interaction.user} removed blacklist for guild {guild} ({guild.id})")
+            await log_action(
+                f"{interaction.user} removed blacklist for guild {guild} ({guild.id})", self.bot
+            )
 
     @blacklist_guild.command(name="info")
     async def blacklist_info_guild(
@@ -718,6 +816,7 @@ class Admin(commands.GroupCog):
             f"**Caught at:** {format_dt(ball.catch_date, style='R')}\n"
             f"**Traded:** {ball.trade_player}\n"
         )
+        await log_action(f"{interaction.user} got info for {ball} ({ball.id})", self.bot)
 
     @balls.command(name="delete")
     @app_commands.checks.has_any_role(*settings.root_role_ids)
@@ -748,6 +847,7 @@ class Admin(commands.GroupCog):
         await interaction.response.send_message(
             f"{settings.collectible_name.title()} {ball_id} deleted.", ephemeral=True
         )
+        await log_action(f"{interaction.user} deleted {ball} ({ball.id})", self.bot)
 
     @balls.command(name="transfer")
     @app_commands.checks.has_any_role(*settings.root_role_ids)
@@ -773,6 +873,7 @@ class Admin(commands.GroupCog):
             return
         try:
             ball = await BallInstance.get(id=ballIdConverted)
+            original_player = ball.player
         except DoesNotExist:
             await interaction.response.send_message(
                 f"The {settings.collectible_name} ID you gave does not exist.", ephemeral=True
@@ -785,10 +886,16 @@ class Admin(commands.GroupCog):
             f"{settings.collectible_name.title()} {ball.countryball} transferred to {user}.",
             ephemeral=True,
         )
+        await log_action(
+            f"{interaction.user} transferred {ball} ({ball.id}) from {original_player} to {user}",
+            self.bot,
+        )
 
     @balls.command(name="reset")
     @app_commands.checks.has_any_role(*settings.root_role_ids)
-    async def balls_reset(self, interaction: discord.Interaction, user: discord.User):
+    async def balls_reset(
+        self, interaction: discord.Interaction, user: discord.User, percentage: int | None = None
+    ):
         """
         Reset a player's balls.
 
@@ -796,6 +903,8 @@ class Admin(commands.GroupCog):
         ----------
         user: discord.User
             The user you want to reset the balls of.
+        percentage: int | None
+            The percentage of balls to delete, if not all. Used for sanctions.
         """
         player = await Player.get(discord_id=user.id)
         if not player:
@@ -803,19 +912,42 @@ class Admin(commands.GroupCog):
                 "The user you gave does not exist.", ephemeral=True
             )
             return
+        if percentage and not 0 < percentage < 100:
+            await interaction.response.send_message(
+                "The percentage must be between 1 and 99.", ephemeral=True
+            )
+            return
         await interaction.response.defer(ephemeral=True, thinking=True)
+
+        if not percentage:
+            text = f"Are you sure you want to delete {user}'s {settings.collectible_name}s?"
+        else:
+            text = (
+                f"Are you sure you want to delete {percentage}% of "
+                f"{user}'s {settings.collectible_name}s?"
+            )
         view = ConfirmChoiceView(interaction)
         await interaction.followup.send(
-            f"Are you sure you want to delete {user}'s {settings.collectible_name}s?",
+            text,
             view=view,
             ephemeral=True,
         )
         await view.wait()
         if not view.value:
             return
-        await BallInstance.filter(player=player).delete()
+        if percentage:
+            balls = await BallInstance.filter(player=player)
+            to_delete = random.sample(balls, int(len(balls) * (percentage / 100)))
+            for ball in to_delete:
+                await ball.delete()
+            count = len(to_delete)
+        else:
+            count = await BallInstance.filter(player=player).delete()
         await interaction.followup.send(
-            f"{user}'s {settings.collectible_name}s have been reset.", ephemeral=True
+            f"{count} {settings.collectible_name}s from {user} have been reset.", ephemeral=True
+        )
+        await log_action(
+            f"{interaction.user} deleted {percentage or 100}% of {player}'s balls", self.bot
         )
 
     @balls.command(name="count")
@@ -863,4 +995,54 @@ class Admin(commands.GroupCog):
         else:
             await interaction.followup.send(
                 f"There are {len(balls)} {special}{country}{settings.collectible_name}{plural}."
+            )
+
+    @logs.command(name="catchlogs")
+    @app_commands.checks.has_any_role(*settings.root_role_ids)
+    async def logs_add(
+        self,
+        interaction: discord.Interaction,
+        user: discord.User,
+    ):
+        """
+        Add or remove a user from catch logs.
+
+        Parameters
+        ----------
+        user: discord.User
+            The user you want to add or remove to the logs.
+        """
+        if user.id in self.bot.catch_log:
+            self.bot.catch_log.remove(user.id)
+            await interaction.response.send_message(
+                f"{user} removed from catch logs.", ephemeral=True
+            )
+        else:
+            self.bot.catch_log.add(user.id)
+            await interaction.response.send_message(f"{user} added to catch logs.", ephemeral=True)
+
+    @logs.command(name="commandlogs")
+    @app_commands.checks.has_any_role(*settings.root_role_ids)
+    async def commandlogs_add(
+        self,
+        interaction: discord.Interaction,
+        user: discord.User,
+    ):
+        """
+        Add or remove a user from command logs.
+
+        Parameters
+        ----------
+        user: discord.User
+            The user you want to add or remove to the logs.
+        """
+        if user.id in self.bot.command_log:
+            self.bot.command_log.remove(user.id)
+            await interaction.response.send_message(
+                f"{user} removed from command logs.", ephemeral=True
+            )
+        else:
+            self.bot.command_log.add(user.id)
+            await interaction.response.send_message(
+                f"{user} added to command logs.", ephemeral=True
             )

@@ -79,6 +79,8 @@ class BallsDexBot(commands.AutoShardedBot):
         self._shutdown = 0
         self.blacklist: set[int] = set()
         self.blacklist_guild: set[int] = set()
+        self.catch_log: set[int] = set()
+        self.command_log: set[int] = set()
         self.locked_balls = TTLCache(maxsize=99999, ttl=60 * 30)
 
     async def start_prometheus_server(self):
@@ -240,23 +242,30 @@ class BallsDexBot(commands.AutoShardedBot):
 
     async def blacklist_check(self, interaction: discord.Interaction) -> bool:
         if interaction.user.id in self.blacklist:
-            await interaction.response.send_message(
-                "You are blacklisted from the bot."
-                "\nYou can appeal this blacklist in our support server: {}".format(
-                    settings.discord_invite
-                ),
-                ephemeral=True,
-            )
+            if interaction.type != discord.InteractionType.autocomplete:
+                await interaction.response.send_message(
+                    "You are blacklisted from the bot."
+                    "\nYou can appeal this blacklist in our support server: {}".format(
+                        settings.discord_invite
+                    ),
+                    ephemeral=True,
+                )
             return False
         if interaction.guild_id and interaction.guild_id in self.blacklist_guild:
-            await interaction.response.send_message(
-                "This server is blacklisted from the bot."
-                "\nYou can appeal this blacklist in our support server: {}".format(
-                    settings.discord_invite
-                ),
-                ephemeral=True,
-            )
+            if interaction.type != discord.InteractionType.autocomplete:
+                await interaction.response.send_message(
+                    "This server is blacklisted from the bot."
+                    "\nYou can appeal this blacklist in our support server: {}".format(
+                        settings.discord_invite
+                    ),
+                    ephemeral=True,
+                )
             return False
+        if interaction.command and interaction.user.id in self.command_log:
+            log.info(
+                f'{interaction.user} ({interaction.user.id}) used "{interaction.command.name}" in '
+                f"{interaction.guild} ({interaction.guild_id})"
+            )
         return True
 
     async def on_command_error(
