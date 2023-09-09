@@ -55,8 +55,10 @@ Rarity list on Djiboutidex
 34. Scottish Djibouti
 35. Djibouti of Siam
 36. Babylonian Djibouti
+36. Norwegian Djibouti
 37. Djibouti Kingdom of Egypt
 37. Djibouti Kingdom of Greece
+38. North Macedonian Djibouti
 38. Djibouti of Guyana
 39. Argentinian Djibouti
 40. Western Djibouti Sahara
