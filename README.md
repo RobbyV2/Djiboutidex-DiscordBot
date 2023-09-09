@@ -24,13 +24,13 @@ You can directly post an issue in this repo, be sure to use the template!
 
 ## Documentation
 
-You can learn how to setup Ballsdex and use all of its tools on the
+You can learn how to setup Ballsdex (which this is based off of) and use all of its tools on the
 [wiki](https://github.com/laggron42/BallsDex-Discordbot/wiki/)!
 More sections are added progressively.
 
 ## Supporting
 
-If you appreciate laggron's work, you can support me on my [Patreon](https://patreon.com/retke)!
+If you appreciate laggron's work, you can support him on his [Patreon](https://patreon.com/retke)!
 
 ## Contributing
 
