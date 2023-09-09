@@ -77,11 +77,11 @@ class CountryballNamePrompt(Modal, title=f"Catch this {settings.collectible_name
             self.button.disabled = True
             await interaction.followup.edit_message(self.ball.message.id, view=self.button.view)
         else:
-            await interaction.response.send_message(f"{interaction.user.mention} Wrong name!\nThey entered: {self.name.value.lower().strip()}")
+            await interaction.response.send_message(f"{interaction.user.mention} Wrong name!\n"
+            f"They entered: {self.name.value.lower().strip()}")
 
     async def catch_ball(
-        self, bot: "BallsDexBot", 
-        user: discord.Member
+        self, bot: "BallsDexBot", user: discord.Member
     ) -> tuple[BallInstance, bool]:
         player, created = await Player.get_or_create(discord_id=user.id)
 
