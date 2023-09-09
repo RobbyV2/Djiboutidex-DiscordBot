@@ -1,6 +1,7 @@
 # DjiboutiDex Discord Bot
 
-[![Discord server](https://discordapp.com/api/guilds/1140320829402530052/embed.png)](https://discord.gg/ZcsZg8XR)
+<iframe src="https://discord.com/widget?id=1140320829402530052&theme=dark" width="460" height="250" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
 [![Pre-commit](https://github.com/RobbyV2/Djiboutidex-DiscordBot/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/RobbyV2/Djiboutidex-DiscordBot/actions/workflows/pre-commit.yml)
 [![Docker build](https://github.com/RobbyV2/Djiboutidex-DiscordBot/actions/workflows/docker.yml/badge.svg)](https://github.com/RobbyV2/Djiboutidex-DiscordBot/actions/workflows/docker.yml)
 [![CodeQL](https://github.com/RobbyV2/Djiboutidex-DiscordBot/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/RobbyV2/Djiboutidex-DiscordBot/actions/workflows/codeql-analysis.yml)
