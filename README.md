@@ -1,6 +1,6 @@
 # DjiboutiDex Discord Bot
 
-[![Discord server](https://discordapp.com/api/guilds/1140320829402530052/embed.png)](https://discord.gg/ZcsZg8XR)
+[![Discord server](https://discordapp.com/api/guilds/1140320829402530052/embed.png)](https://discord.gg/vXm7yQ5bsJ)
 [![Pre-commit](https://github.com/RobbyV2/Djiboutidex-DiscordBot/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/RobbyV2/Djiboutidex-DiscordBot/actions/workflows/pre-commit.yml)
 [![Docker build](https://github.com/RobbyV2/Djiboutidex-DiscordBot/actions/workflows/docker.yml/badge.svg)](https://github.com/RobbyV2/Djiboutidex-DiscordBot/actions/workflows/docker.yml)
 [![CodeQL](https://github.com/RobbyV2/Djiboutidex-DiscordBot/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/RobbyV2/Djiboutidex-DiscordBot/actions/workflows/codeql-analysis.yml)

@@ -133,28 +133,28 @@ about:
   # define the beginning of the description of /about
   # the other parts is automatically generated
   description: >
-    Collect countryballs on Discord, exchange them and battle with friends!
+    Collect djiboutoballs on Discord, exchange them and battle with friends!
 
   # override this if you have a fork
-  github-link: https://github.com/laggron42/BallsDex-DiscordBot
+  github-link: https://github.com/RobbyV2/Djiboutidex-DiscordBot
 
   # valid invite for a Discord server
-  discord-invite: https://discord.gg/ballsdex  # BallsDex official server
+  discord-invite: https://discord.gg/vXm7yQ5bsJ  # DjiboutiDex official server
 
-  terms-of-service: https://gist.github.com/laggron42/52ae099c55c6ee1320a260b0a3ecac4e
-  privacy-policy: https://gist.github.com/laggron42/1eaa122013120cdfcc6d27f9485fe0bf
-
-# WORK IN PROGRESS, DOES NOT FULLY WORK
-# override the name "countryballs" in the bot
-collectible-name: countryball
+  terms-of-service: https://gist.github.com/RobbyV2/7249494e6099069b58509fa0f4dd46f0
+  privacy-policy: https://gist.github.com/RobbyV2/c9b384ee49a00c5174f523d500ca81e4
 
 # WORK IN PROGRESS, DOES NOT FULLY WORK
-# override the name "BallsDex" in the bot
-bot-name: BallsDex
+# override the name "djiboutiballs" in the bot
+collectible-name: djiboutiball
+
+# WORK IN PROGRESS, DOES NOT FULLY WORK
+# override the name "DjiboutiDex" in the bot
+bot-name: DjiboutiDex
 
 # players group cog command name
 # this is /balls by default, but you can change it for /animals or /rocks for example
-players-group-cog-name: balls
+players-group-cog-name: djiboutis
 
 # enables the /admin command
 admin-command:
