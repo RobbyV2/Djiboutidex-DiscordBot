@@ -1,0 +1,5 @@
+Name: djbouti?
+Health:1000
+Dmg:20
+Abilty:I'm real trust me!
+Fake Djibouti can copy a enemy djbouti for 6 turns , after those 6 turns end fake Djibouti takes 2× damage (only apply when abiltys ends) and has to wait 3 turns untill it can use its abilty again 

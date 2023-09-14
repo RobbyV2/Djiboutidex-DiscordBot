@@ -1,0 +1,6 @@
+Name: DJBOOTY
+HP:690
+ATTACK:420
+ABILITY:YA DON'T GOTTA LOOK AT ME LIKE THAT!
+ABILITY DESCRIPTION: Djibooty distracts other Djiboutis with its booty, therefore making them lose 1 turn (only allowed to use 3 abilities in a single round)
+Rarity: 6-14 
