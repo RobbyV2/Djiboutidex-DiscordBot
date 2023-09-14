@@ -35,6 +35,7 @@ Rarity list on Djiboutidex
 19. Soviet Djibouti Union
 20. Chinese Djibouti
 21. Japonic Djibouti
+21. Djibouti Republic of China
 22. Djibouti SFSR
 23. Irelandic Djibouti
 24. European Djibouti Union
@@ -58,6 +59,7 @@ Rarity list on Djiboutidex
 36. Norwegian Djibouti
 37. Djibouti Kingdom of Egypt
 37. Djibouti Kingdom of Greece
+37. Azerbaijanian Djibouti
 38. North Macedonian Djibouti
 38. Djibouti of Guyana
 39. Argentinian Djibouti

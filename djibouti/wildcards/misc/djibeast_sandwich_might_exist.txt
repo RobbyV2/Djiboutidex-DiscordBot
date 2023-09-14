@@ -1,0 +1,10 @@
+Name: Djibeast
+Stats:
+2700 HP 
+1200 ATTACK
+Ability Name: 
+I am too generous
+Ability Description:
+Djibeast gives 2 random balls when defeated 
+Rarity:
+idk top 1-7 
