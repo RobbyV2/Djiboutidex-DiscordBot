@@ -19,6 +19,7 @@ Rarity list on Djiboutidex
 3. Britannic Djibouti
 4. Germanic Djibouti
 5. Djibouti Vatican
+5. AH Djibouti
 6. Djibouti Empire
 7. Soviet Djibouti
 8. 5d Djibouti
@@ -59,6 +60,7 @@ Rarity list on Djiboutidex
 36. Norwegian Djibouti
 37. Djibouti Kingdom of Egypt
 37. Djibouti Kingdom of Greece
+37. Ancient Greece Djibouti
 37. Azerbaijanian Djibouti
 38. North Macedonian Djibouti
 38. Djibouti of Guyana
