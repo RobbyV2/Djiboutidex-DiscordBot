@@ -1,0 +1,4 @@
+HP: 1000
+ATK: 470
+Ability: Sigma Djibouti
+Moyai Djibouti can become a real Moyai, meaning it can't be attacked for 3 turns.

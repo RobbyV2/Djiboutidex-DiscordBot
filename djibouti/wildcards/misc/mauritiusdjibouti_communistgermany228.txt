@@ -1,0 +1,4 @@
+Ability:Djiboutian Bow!
+Mauritius can do X3 attack to every enemy ball
+HP:500
+AT:100

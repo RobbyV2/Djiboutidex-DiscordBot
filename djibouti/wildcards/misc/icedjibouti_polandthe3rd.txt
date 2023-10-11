@@ -1,0 +1,5 @@
+Abilty:iced out
+Ice Djibouti can freeze a enemy,  disabling them for 4 turns and taking 20% hp from frostbite (you can only use this once every 5 turns) also ice Djibouti freeze itself in order for it to be unattackable for 3 turns and gains 10% more hp (you can only use self freeze twice) 
+
+Hp:200
+Atk:500

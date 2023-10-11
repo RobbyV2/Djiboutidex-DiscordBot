@@ -28,7 +28,9 @@ Rarity list on Djiboutidex
 10. Djibouti Rectangle
 11. Real Djibouti
 12. Djibouti Triangle
+12. Kalmar Union Djibouti
 13. Troll Djibouti
+14. Fake Djibouti
 13. Dynasty of Djibouti
 14. Hunnic Djibouti
 15. DJ Booty
@@ -43,8 +45,10 @@ Rarity list on Djiboutidex
 21. Djibouti Republic of China
 22. Djibouti SFSR
 23. Irelandic Djibouti
+23. Hejaz Djibouti
 24. European Djibouti Union
 24. Napoleonic France Djibouti
+24. West Djibouti Germany
 24. Australian Djibouti
 25. Canadian Djibouti
 25. Mexican Djibouti
@@ -52,10 +56,13 @@ Rarity list on Djiboutidex
 26. Belgian Djibouti
 27. Djibouti HBC
 27. Ukrainian Djibouti SSR
+27. Venezuelan Djibouti
 28. Ethiopian Djibouti Empire
+28. Union of South African Djibouti
 29. Djibouti Republic of Taiwan
 30. Serbian Djibouti
 30. Egyptian Djibouti
+30. Serbian Djibouti
 30. Czechian Djibouti
 31. Ukrainian Djibouti
 32. Djibouti of England
@@ -65,6 +72,7 @@ Rarity list on Djiboutidex
 36. Babylonian Djibouti
 36. Norwegian Djibouti
 37. Djibouti Kingdom of Egypt
+37. Ancient Egypt Djibouti
 37. Djibouti Kingdom of Greece
 37. Ancient Greece Djibouti
 37. Azerbaijanian Djibouti
@@ -77,6 +85,7 @@ Rarity list on Djiboutidex
 43. Slovakian Djibouti
 43. Nigerian Djibouti
 44. Somalian Djibouti
+44. Slovenian Djibouti
 45. Djibouti of Mozambique
 46. Armenian Djibouti
 46. Djibouti of Kuwait

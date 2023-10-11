@@ -1,0 +1,4 @@
+Attack: 1700
+Hp: 3500
+Ability Name: HES ON FIRE!
+Ability Description: When flaming hotbouti attacks the opponent now starts to lose 160 hp every turn because of the flaming hot sword 
