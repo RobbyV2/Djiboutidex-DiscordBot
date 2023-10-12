@@ -8,53 +8,56 @@ The following is the rarity list for djiboutidex.
 4. Germanic Djibouti
 5. Djibouti Vatican
 5. AH Djibouti
-6. Djibouti Empire
 7. Soviet Djibouti
-8. 5d Djibouti
-8. Djibeast
 9. Djibouti Kingdom
-10. Djibouti Rectangle
-11. Real Djibouti
-12. Djibouti Triangle
 12. Kalmar Union Djibouti
-13. Troll Djibouti
 13. Dynasty of Djibouti
 14. Hunnic Djibouti
-15. DJ Booty
 15. Warsaw Pact Djibouti
 16. Scandinavian Djibouti
 17. American Djibouti
 18. Indian Djibouti
 19. Soviet Djibouti Union
 20. Chinese Djibouti
+20. Faroe Djibouti Islands
 21. Japonic Djibouti
 22. Brazilian Djibouti
-21. Djibouti Republic of China
 22. Djibouti SFSR
 23. Irelandic Djibouti
+23. Hejaz Djibouti
 24. European Djibouti Union
 24. Napoleonic France Djibouti
+24. West Djibouti Germany
 24. Australian Djibouti
+24. German Djibouti
 25. Canadian Djibouti
+25. Cuban Djibouti
 25. Mexican Djibouti
 26. Polish Djibouti
 26. Belgian Djibouti
 27. Djibouti HBC
 27. Ukrainian Djibouti SSR
+27. Venezuelan Djibouti
+27. Kingdom of Italy Djibouti
 28. Ethiopian Djibouti Empire
 29. Djibouti Republic of Taiwan
+29. Frankish Djibouti
 30. Serbian Djibouti
 30. Egyptian Djibouti
+30. Serbian Djibouti
+30. CAR Djibouti
 30. Czechian Djibouti
 31. Ukrainian Djibouti
 32. Djibouti of England
+32. Cambodian Djibouti
 33. Djibouti of Zhou 
+33. Israeli Djibouti
 34. Scottish Djibouti
 35. Djibouti of Siam
+35. Georgian Djibouti
 36. Babylonian Djibouti
 36. Norwegian Djibouti
-37. Djibouti Kingdom of Egypt
-37. Djibouti Kingdom of Greece
+37. Ancient Egypt Djibouti
 37. Ancient Greece Djibouti
 37. Azerbaijanian Djibouti
 38. North Macedonian Djibouti
@@ -63,11 +66,9 @@ The following is the rarity list for djiboutidex.
 40. Western Djibouti Sahara
 41. Djibouti of Maldives
 42. Djibouti of Uruguay
-43. Slovakian Djibouti
 43. Nigerian Djibouti
 44. Somalian Djibouti
-45. Djibouti of Mozambique
-46. Armenian Djibouti
+44. Slovenian Djibouti
 46. Djibouti of Kuwait
 47. Djibouti
 
@@ -87,16 +88,17 @@ djiboutiunion a: 250 h: 400
 soviet djibouti a: 600  h: 1000
 djibouti vatican a: 1  h: 1
 troll djibouti a: 1  h: 1750
+brittannic djibouti a: 1500 h: 1000
 
-And now the last thing, catch names. Lets say babylon is the country I ask. You will have to say all possible names in lowercase separated by semicolons. For example, babylon would be babylonian djibouti;babylon djibouti;djibouti of babylon. Keep in mind for each country "Djibouti of <countryname>" or "<countryname> Djibouti" will be a valid catch option. The rest are usual something like babylonian djibouti, or american djibouti, indian djibouti, etc, usually to describe a person followed by djibouti.
+And now the last thing, catch names. Lets say babylon is the country I ask. You will have to say all possible names in lowercase separated by semicolons. For example, babylon would be babylonian djibouti;babylon djibouti;djibouti of babylon. Keep in mind for each country "Djibouti of <countryname>" or "<countryname> Djibouti" will be a valid catch option. The rest are usual something like babylonian djibouti, or american djibouti, indian djibouti, etc, usually to describe a person followed by djibouti. Please also include any possible abbreviations.
 
 Now is the template, when I ask you for a country respond in this format.
 
-COUNTRY NAME
+DJIBOUTI COUNTRY NAME
 Type: Dictatorship or Democracy
 Finance: Capitalist or Socialist
 Catch names: Separated by semicolons in lowercase
 Rarity: Number
 Health: Number
 Attack: Number
-Ability (Max two sentences): Make a cool ability up, may involve adding or removing cards from your or your opponents deck, one time power ups, extra damage against specific categories of countries such as unions or areas of earth.
+Ability (Max two sentences): Make a cool ability up, may involve adding or removing cards from your or your opponents deck, one time power ups, extra damage against specific categories of countries such as unions or areas of earth. Be creative!

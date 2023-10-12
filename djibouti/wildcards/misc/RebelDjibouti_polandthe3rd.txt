@@ -1,5 +1,0 @@
-Name:Rebel Djibouti
-Health:600
-Dmg:500
-Abilty:communism shall Rise!
-For every communist djbouti on your deck , rebel djbouti gets +300 hp and dmg also rebel djbouti can start rebellions in other countries, disabling them for the next turn and taking 10% hp from them
