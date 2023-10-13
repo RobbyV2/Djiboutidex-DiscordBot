@@ -108,7 +108,7 @@ class Admin(commands.GroupCog):
     async def send_message(
         self,
         interaction: discord.Interaction,
-        channelid: int | None = None,
+        channelid: str | None = None,
         message: str | None = None,
         ephemeral: bool | None = None,
     ):
@@ -117,7 +117,7 @@ class Admin(commands.GroupCog):
 
         Parameters
         ----------
-        channelid: int
+        channelid: str
             The ID of the channel to send the message. If not given, the current channel.
         message: str
             Content of the message to send.
@@ -131,7 +131,7 @@ class Admin(commands.GroupCog):
             return
 
         if not channelid:
-            await interactions.channel.send_message(message, ephemeral=ephemeral)
+            await interaction.channel.send_message(message, ephemeral=ephemeral)
             return
 
         channelToSend = self.bot.get_channel(channelid)
