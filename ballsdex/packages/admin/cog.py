@@ -133,8 +133,6 @@ class Admin(commands.GroupCog):
             )
             return
 
-        # without channelid
-
         if not channelid and interactionMessage:
             await interaction.response.send_message(message, ephemeral=ephemeral)
             return
