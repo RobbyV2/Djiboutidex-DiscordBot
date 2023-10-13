@@ -103,6 +103,40 @@ class Admin(commands.GroupCog):
         await self.bot.change_presence(status=status, activity=activity)
         await interaction.response.send_message("Status updated.", ephemeral=True)
 
+    @app_commands.command(name="send")
+    @app_commands.checks.has_any_role(*settings.root_role_ids)
+    async def send_message(
+        self,
+        interaction: discord.Interaction,
+        channelid: int | None = None,
+        message: str | None = None,
+        ephemeral: bool | None = None,
+    ):
+        """
+        Send a message with the bot in the current or specified channel.
+
+        Parameters
+        ----------
+        channelid: int
+            The ID of the channel to send the message. If not given, the current channel.
+        message: str
+            Content of the message to send.
+        ephemeral: bool
+            Whether or not to send the message as an ephemeral one.
+        """
+        if not message:
+            await interaction.response.send_message(
+                "You must provide at least a `message`.", ephemeral=True
+            )
+            return
+
+        if not channelid:
+            await interactions.channel.send_message(message, ephemeral=ephemeral)
+            return
+
+        channelToSend = self.bot.get_channel(channelid)
+        await channelToSend.send(message, ephemeral=ephemeral)
+
     @app_commands.command()
     @app_commands.checks.has_any_role(*settings.root_role_ids, *settings.admin_role_ids)
     async def rarity(self, interaction: discord.Interaction, chunked: bool = True):
