@@ -111,6 +111,7 @@ class Admin(commands.GroupCog):
         channelid: str | None = None,
         message: str | None = None,
         ephemeral: bool | None = None,
+        interactionMessage: bool | None = None,
     ):
         """
         Send a message with the bot in the current or specified channel.
@@ -118,11 +119,13 @@ class Admin(commands.GroupCog):
         Parameters
         ----------
         channelid: str
-            The ID of the channel to send the message. If not given, the current channel.
+            The ID of the channel to send the message. If not given, the current channel. (stops any option other than message from working)
         message: str
             Content of the message to send.
         ephemeral: bool
-            Whether or not to send the message as an ephemeral one.
+            Whether or not to send the message as an ephemeral one. (only works with interactionMessage)
+        interactionMessage: bool
+            Whether or not to send the message as from the interaction or not.
         """
         if not message:
             await interaction.response.send_message(
@@ -130,12 +133,20 @@ class Admin(commands.GroupCog):
             )
             return
 
-        if not channelid:
+        # without channelid
+
+        if not channelid and interactionMessage:
             await interaction.response.send_message(message, ephemeral=ephemeral)
             return
 
-        channelToSend = self.bot.get_channel(channelid)
-        await channelToSend.send(message, ephemeral=ephemeral)
+        if not channelid and not interactionMessage:
+            await interaction.response.channel.send(message)
+            return
+
+        if channelid:
+            channelToSend = bot.get_channel(channelid)
+            await channelToSend.send(message)
+            return
 
     @app_commands.command()
     @app_commands.checks.has_any_role(*settings.root_role_ids, *settings.admin_role_ids)
