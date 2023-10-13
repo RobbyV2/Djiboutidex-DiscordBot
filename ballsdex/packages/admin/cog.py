@@ -105,7 +105,7 @@ class Admin(commands.GroupCog):
 
     @app_commands.command(name="send")
     @app_commands.checks.has_any_role(*settings.root_role_ids)
-    async def send_message(
+    async def sendmessage(
         self,
         interaction: discord.Interaction,
         channelid: str | None = None,
@@ -131,7 +131,7 @@ class Admin(commands.GroupCog):
             return
 
         if not channelid:
-            await interaction.channel.send_message(message, ephemeral=ephemeral)
+            await interaction.response.send_message(message, ephemeral=ephemeral)
             return
 
         channelToSend = self.bot.get_channel(channelid)
