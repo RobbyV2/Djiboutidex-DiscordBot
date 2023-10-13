@@ -105,13 +105,13 @@ class Admin(commands.GroupCog):
 
     @app_commands.command(name="send")
     @app_commands.checks.has_any_role(*settings.root_role_ids)
-    async def sendmessage(
+    async def send_message(
         self,
         interaction: discord.Interaction,
         channelid: str | None = None,
         message: str | None = None,
         ephemeral: bool | None = None,
-        interactionMessage: bool | None = None,
+        interaction_message: bool | None = None,
     ):
         """
         Send a message with the bot in the current or specified channel.
@@ -123,8 +123,8 @@ class Admin(commands.GroupCog):
         message: str
             Content of the message to send.
         ephemeral: bool
-            Whether or not to send the message as an ephemeral one. (only works with interactionMessage)
-        interactionMessage: bool
+            Whether or not to send the message as an ephemeral one. (only works with interaction_message)
+        interaction_message: bool
             Whether or not to send the message as from the interaction or not.
         """
         if not message:
@@ -133,11 +133,11 @@ class Admin(commands.GroupCog):
             )
             return
 
-        if not channelid and interactionMessage:
+        if not channelid and interaction_message:
             await interaction.response.send_message(message, ephemeral=ephemeral)
             return
 
-        if not channelid and not interactionMessage:
+        if not channelid and not interaction_message:
             await interaction.response.channel.send(message)
             return
 
