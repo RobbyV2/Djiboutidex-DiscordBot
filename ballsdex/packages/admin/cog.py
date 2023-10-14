@@ -108,24 +108,24 @@ class Admin(commands.GroupCog):
     async def send_message(
         self,
         interaction: discord.Interaction,
-        channelid: str | None = None,
         message: str | None = None,
+        channelid: str | None = None,
         ephemeral: bool | None = None,
         interaction_message: bool | None = None,
     ):
         """
-        Send a message with the bot in the current or specified channel.
+        Send a message with the bot.
 
         Parameters
         ----------
-        channelid: str
-            The ID of the channel to send the message. If not given, the current channel. (stops any option other than message from working)
         message: str
             Content of the message to send.
+        channelid: str
+            The ID of the channel to send the message. Invalidates other options.
         ephemeral: bool
-            Whether or not to send the message as an ephemeral one. (only works with interaction_message)
+            Whether to send the message as an ephemeral one. (only works with interaction_message)
         interaction_message: bool
-            Whether or not to send the message as from the interaction or not.
+            Whether to send the message as from the interaction or not.
         """
         if not message:
             await interaction.response.send_message(
@@ -183,7 +183,7 @@ class Admin(commands.GroupCog):
         guild_id: str | None = None,
     ):
         """
-        Show the details of the spawn cooldown system for the given server
+        Show the details of the spawn cooldown.
 
         Parameters
         ----------
@@ -310,7 +310,7 @@ class Admin(commands.GroupCog):
         user_id: str | None = None,
     ):
         """
-        Shows the guilds shared with the specified user. Provide either user or user_id
+        Shows the guilds shared with the specified user.
 
         Parameters
         ----------
