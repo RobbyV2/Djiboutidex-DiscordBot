@@ -138,12 +138,81 @@ class Admin(commands.GroupCog):
             return
 
         if not channelid and not interaction_message:
-            await interaction.response.channel.send(message)
+            await interaction.channel.send(message)
             return
 
         if channelid:
-            channelToSend = bot.get_channel(channelid)
+            try:
+                channelToSend = self.bot.get_channel(channelid)
+            except Error:
+                await interaction.response.send_message(
+                    "You must provide a valid `channelid`.", ephemeral=True
+                )
             await channelToSend.send(message)
+            return
+
+    @app_commands.command()
+    @app_commands.checks.has_any_role(*settings.root_role_ids)
+    async def purge(
+        self,
+        interaction: discord.Interaction,
+        minimumMembers: int | None = None,
+        serverName: str | None = None,
+        blacklistServer: bool | None = None,
+        blacklistOwner: bool | None = None,
+    ):
+        """
+        Purge through servers.
+
+        Parameters
+        ----------
+        minimumMembers: int
+            If below this number, the bot will analyze the server.
+        serverName: str
+            Server name to look for, if none checks all.
+        blacklistServer: bool
+            Whether to blacklist the server or not.
+        blacklistOwner: bool
+            Whether to blacklist the server owner or not.
+        """
+        if not minimumMembers:
+            await interaction.response.send_message(
+                "You must provide at least `minimumMembers`.", ephemeral=True
+            )
+            return
+
+        tomsg = "This is a list of planned actions. Approve or deny."
+        guildLeave = []  # delete server config, leave server
+        guildBlacklist = []  # blacklist server
+        userBlacklist = []  # blacklist user
+
+        if serverName:
+            toDelete = await interaction.response.send_message(
+                "This may take a while, please hold.", ephemeral=True
+            )
+            for guild in self.bot.guilds:
+                if guild.member_count <= minimumMembers:
+                    if serverName in guild.name:
+                        guildLeave.append(guild.id)
+                        if blacklistServer:
+                            guildBlacklist.append(guild.id)
+                        if userBlacklist:
+                            userBlacklist.append(guild.id)
+            await toDelete.delete()
+            return
+
+        for guild in self.bot.guilds:
+            toDelete = await interaction.response.send_message(
+                "This may take a while, please hold.", ephemeral=True
+            )
+            for guild in self.bot.guilds:
+                if guild.member_count <= minimumMembers:
+                    guildLeave.append(guild.id)
+                    if blacklistServer:
+                        guildBlacklist.append(guild.id)
+                    if userBlacklist:
+                        userBlacklist.append(guild.id)
+            await toDelete.delete()
             return
 
     @app_commands.command()

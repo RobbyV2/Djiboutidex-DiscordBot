@@ -100,7 +100,7 @@ class Info(commands.Cog):
             f"**{balls_count}** {settings.collectible_name}s to collect\n"
             f"**{players_count}** players that caught "
             f"**{balls_instances_count}** {settings.collectible_name}s\n"
-            f"**{len(self.bot.guilds)}** servers playing\n\n"
+            f"**{len(self.bot.guilds)}** servers using Djiboutidex\n\n"
             "This bot was made by **El Laggron**, consider supporting him on his "
             "[Patreon](https://patreon.com/retke) :heart: (Djiboutidex is made by roobbyy)\n"
             f"Djiboutidex is based off of the april fools event ballsdex had"

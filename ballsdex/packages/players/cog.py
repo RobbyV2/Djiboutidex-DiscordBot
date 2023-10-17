@@ -299,6 +299,7 @@ class Players(commands.GroupCog, group_name=settings.players_group_cog_name):
         user: discord.Member
             The user you would like to see
         """
+        user_obj = user if user else interaction.user
         await interaction.response.defer(thinking=True)
         try:
             player = await Player.get(discord_id=user_obj.id)

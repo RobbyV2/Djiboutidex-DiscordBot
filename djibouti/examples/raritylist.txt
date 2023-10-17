@@ -35,10 +35,12 @@ Rarity list on Djiboutidex
 13. Qin Djibouti
 13. Dynasty of Djibouti
 14. Fake Djibouti
+14. Susbouti
 14. Djibouti Smurf Cat
 14. Hunnic Djibouti
 15. DJ Booty
 15. Paper Ball Djibouti
+15. Puzzle Djibouti
 15. British Djibouti Raj
 15. Hotbouti
 15. Coldbouti
@@ -56,6 +58,7 @@ Rarity list on Djiboutidex
 20. Faroe Djibouti Islands
 20. African Djibouti Union
 21. Japonic Djibouti
+21. Ancient Spartan Djibouti
 22. Brazilian Djibouti
 21. Djibouti Republic of China
 22. Djibouti SFSR
@@ -91,7 +94,9 @@ Rarity list on Djiboutidex
 28. Turkey Djibouti
 29. Djibouti Republic of Taiwan
 29. Frankish Djibouti
+29. Indonesia Djibouti
 30. Serbian Djibouti
+30. Bahrain Djibouti
 30. Egyptian Djibouti
 30. Serbian Djibouti
 30. CAR Djibouti
@@ -103,6 +108,7 @@ Rarity list on Djiboutidex
 32. Portuguese Djibouti
 32. Sammarinese Djibouti
 33. Djibouti of Zhou 
+33. Afghan Djibouti
 33. Israeli Djibouti
 33. Greece Djibouti
 33. Nepalese Djibouti
@@ -111,6 +117,7 @@ Rarity list on Djiboutidex
 34. Scottish Djibouti
 35. Djibouti of Siam
 35. Brunei Djibouti
+35. Singaporean Djibouti
 35. Tajikistan Djibouti
 35. Georgian Djibouti
 35. Tanzanian Djibouti
