@@ -143,7 +143,7 @@ class Admin(commands.GroupCog):
 
         if channelid:
             try:
-                channelToSend = self.bot.get_channel(channelid)
+                channelToSend = BallsDexBot.get_channel(int(channelid))
             except Error:
                 await interaction.response.send_message(
                     "You must provide a valid `channelid`.", ephemeral=True
@@ -157,32 +157,32 @@ class Admin(commands.GroupCog):
     async def purge(
         self,
         interaction: discord.Interaction,
-        minimumMembers: int | None = None,
-        serverName: str | None = None,
-        blacklistServer: bool | None = None,
-        blacklistOwner: bool | None = None,
+        minimum_members: int | None = None,
+        server_name: str | None = None,
+        blacklist_server: bool | None = None,
+        blacklist_owner: bool | None = None,
     ):
         """
         Purge through servers.
 
         Parameters
         ----------
-        minimumMembers: int
+        minimum_members: int
             If below this number, the bot will analyze the server.
-        serverName: str
+        server_name: str
             Server name to look for, if none checks all.
-        blacklistServer: bool
+        blacklist_server: bool
             Whether to blacklist the server or not.
-        blacklistOwner: bool
+        blacklist_owner: bool
             Whether to blacklist the server owner or not.
         """
 
         def check(m):
             return ctx.author == m.author
 
-        if not minimumMembers:
+        if not minimum_members:
             await interaction.response.send_message(
-                "You must provide at least `minimumMembers`.", ephemeral=True
+                "You must provide at least `minimum_members`.", ephemeral=True
             )
             return
 
@@ -192,17 +192,17 @@ class Admin(commands.GroupCog):
         blacklistOwners = []
         blacklistOwnersNames = []
 
-        if serverName:
+        if server_name:
             toDelete = await interaction.response.send_message(
                 "This may take a while, please hold.", ephemeral=True
             )
             for guild in self.bot.guilds:
-                if guild.member_count <= minimumMembers:
-                    if serverName in guild.name:
+                if guild.member_count <= minimum_members:
+                    if server_name in guild.name:
                         guildLeave.append(guild.id)
-                        if blacklistServer:
+                        if blacklist_server:
                             guildBlacklist.append(guild.id)
-                        if blacklistOwner:
+                        if blacklist_owner:
                             blacklistOwners.append(guild.owner)
         else:
             for guild in self.bot.guilds:
@@ -210,14 +210,14 @@ class Admin(commands.GroupCog):
                     "This may take a while, please hold.", ephemeral=True
                 )
                 for guild in self.bot.guilds:
-                    if guild.member_count <= minimumMembers:
+                    if guild.member_count <= minimum_members:
                         guildLeave.append(guild.id)
-                        if blacklistServer:
+                        if blacklist_server:
                             guildBlacklist.append(guild.id)
-                        if blacklistOwner:
+                        if blacklist_owner:
                             blacklistOwners.append(guild.owner)
 
-        if blacklistOwner:
+        if blacklist_owner:
             for user in blacklistOwners:
                 blacklistOwnersNames.append(str(user.name) + str(user.discriminator))
 
@@ -236,7 +236,7 @@ class Admin(commands.GroupCog):
         try:
             msg = await self.bot.wait_for("message", timeout=60.0, check=check)
             if msg.content.lower() == "yes" or msg.content.lower() == "approve":
-                if blacklistOwner:
+                if blacklist_owner:
                     for owner in blacklistOwners:
                         try:
                             await BlacklistedID.create(
@@ -254,7 +254,7 @@ class Admin(commands.GroupCog):
                             f"by using the purge command.",
                             self.bot,
                         )
-                if blacklistServer:
+                if blacklist_server:
                     for guild in guildBlacklist:
                         guild = await self.bot.fetch_guild(int(guild))
                         try:
@@ -281,7 +281,7 @@ class Admin(commands.GroupCog):
                         await config.save()
                         self.bot.dispatch("ballsdex_settings_change", guild, enabled=False)
                     await guild.leave()
-                await interaction.response.send_message("Done.", ephemeral=True)
+                await interaction.response.send_message("Purge completed.", ephemeral=True)
             else:
                 await interaction.response.send_message("Purge cancelled.", ephemeral=True)
         except asyncio.TimeoutError:
