@@ -150,6 +150,7 @@ class Admin(commands.GroupCog):
                 )
             await channelToSend.send(message)
             return
+        await interaction.response.send_message("Done.", ephemeral=True)
 
     @app_commands.command()
     @app_commands.checks.has_any_role(*settings.root_role_ids)
@@ -175,6 +176,10 @@ class Admin(commands.GroupCog):
         blacklistOwner: bool
             Whether to blacklist the server owner or not.
         """
+
+        def check(m):
+            return ctx.author == m.author
+
         if not minimumMembers:
             await interaction.response.send_message(
                 "You must provide at least `minimumMembers`.", ephemeral=True
@@ -182,9 +187,10 @@ class Admin(commands.GroupCog):
             return
 
         tomsg = "This is a list of planned actions. Approve or deny."
-        guildLeave = []  # delete server config, leave server
-        guildBlacklist = []  # blacklist server
-        userBlacklist = []  # blacklist user
+        guildLeave = []
+        guildBlacklist = []
+        blacklistOwners = []
+        blacklistOwnersNames = []
 
         if serverName:
             toDelete = await interaction.response.send_message(
@@ -196,24 +202,92 @@ class Admin(commands.GroupCog):
                         guildLeave.append(guild.id)
                         if blacklistServer:
                             guildBlacklist.append(guild.id)
-                        if userBlacklist:
-                            userBlacklist.append(guild.id)
-            await toDelete.delete()
-            return
-
-        for guild in self.bot.guilds:
-            toDelete = await interaction.response.send_message(
-                "This may take a while, please hold.", ephemeral=True
-            )
+                        if blacklistOwner:
+                            blacklistOwners.append(guild.owner)
+        else:
             for guild in self.bot.guilds:
-                if guild.member_count <= minimumMembers:
-                    guildLeave.append(guild.id)
-                    if blacklistServer:
-                        guildBlacklist.append(guild.id)
-                    if userBlacklist:
-                        userBlacklist.append(guild.id)
-            await toDelete.delete()
-            return
+                toDelete = await interaction.response.send_message(
+                    "This may take a while, please hold.", ephemeral=True
+                )
+                for guild in self.bot.guilds:
+                    if guild.member_count <= minimumMembers:
+                        guildLeave.append(guild.id)
+                        if blacklistServer:
+                            guildBlacklist.append(guild.id)
+                        if blacklistOwner:
+                            blacklistOwners.append(guild.owner)
+
+        if blacklistOwner:
+            for user in blacklistOwners:
+                blacklistOwnersNames.append(str(user.name) + str(user.discriminator))
+
+        tomsg += f"""\nGuilds Leaving{guildLeave}
+        Guilds Blacklisting {guildBlacklist}\n
+        Users Blacklisting {blacklistOwnersNames}"""
+
+        await toDelete.delete()
+        try:
+            await interaction.response.send_message(tomsg, ephemeral=True)
+        except Exception:
+            tomsg = f"""\nGuilds Leaving{len(guildLeave)}
+        Guilds Blacklisting {len(guildBlacklist)}\n
+        Users Blacklisting {len(blacklistOwnersNames)}"""
+            await interaction.response.send_message(tomsg, ephemeral=True)
+        try:
+            msg = await self.bot.wait_for("message", timeout=60.0, check=check)
+            if msg.content.lower() == "yes" or msg.content.lower() == "approve":
+                if blacklistOwner:
+                    for owner in blacklistOwners:
+                        try:
+                            await BlacklistedID.create(
+                                discord_id=owner.id, reason="Done through purge, possibly farming."
+                            )
+                        except IntegrityError:
+                            pass
+                        else:
+                            self.bot.blacklist.add(owner.id)
+                            await interaction.response.send_message(
+                                "User " + owner.name + " is now blacklisted.", ephemeral=True
+                            )
+                        await log_action(
+                            f"{interaction.user} blacklisted {owner} ({owner.id})"
+                            f"by using the purge command.",
+                            self.bot,
+                        )
+                if blacklistServer:
+                    for guild in guildBlacklist:
+                        guild = await self.bot.fetch_guild(int(guild))
+                        try:
+                            await BlacklistedGuild.create(
+                                discord_id=guild.id,
+                                reason="Done through purge, possibly farming or contains explicit content.",
+                            )
+                        except IntegrityError:
+                            pass
+                        else:
+                            self.bot.blacklist_guild.add(guild.id)
+                        await log_action(
+                            f"{interaction.user} blacklisted {guild}({guild.id}) "
+                            f"by using the purge command.",
+                            self.bot,
+                        )
+                for guild in guildLeave:
+                    guild = await self.bot.fetch_guild(int(guild))
+                    config, created = await GuildConfig.get_or_create(
+                        guild_id=interaction.guild.id
+                    )
+                    if config.enabled:
+                        config.enabled = False  # type: ignore
+                        await config.save()
+                        self.bot.dispatch("ballsdex_settings_change", guild, enabled=False)
+                    await guild.leave()
+                await interaction.response.send_message("Done.", ephemeral=True)
+            else:
+                await interaction.response.send_message("Purge cancelled.", ephemeral=True)
+        except asyncio.TimeoutError:
+            await interaction.response.send_message(
+                "Timeout error, please send command again.", ephemeral=True
+            )
 
     @app_commands.command()
     @app_commands.checks.has_any_role(*settings.root_role_ids, *settings.admin_role_ids)
