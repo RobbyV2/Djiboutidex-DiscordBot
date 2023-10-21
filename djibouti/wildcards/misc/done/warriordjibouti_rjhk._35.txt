@@ -1,0 +1,6 @@
+Warrior Djibouti
+
+HP 2000
+ATK 5000 
+Ability:CHARGE!!!!
+Warrior Djibouti can slash 5 time on enemy (each slash does 500 atk)
